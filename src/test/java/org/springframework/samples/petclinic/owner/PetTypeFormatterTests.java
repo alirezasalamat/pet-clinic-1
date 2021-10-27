@@ -17,17 +17,16 @@
 package org.springframework.samples.petclinic.owner;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -71,6 +70,104 @@ class PetTypeFormatterTests {
 		Assertions.assertThrows(ParseException.class, () -> {
 			petTypeFormatter.parse("Fish", Locale.ENGLISH);
 		});
+	}
+
+	//Test haye khodemoon
+
+	@Test
+	public void testParseStateNotNull(){
+		PetRepository petsRepo = mock(PetRepository.class);
+
+		PetType cat = mock(PetType.class);
+		when(cat.getName()).thenReturn("cat");
+		PetType dog = mock(PetType.class);
+		when(dog.getName()).thenReturn("dog");
+		PetType hamster = mock(PetType.class);
+
+		List<PetType> petTypeList = Arrays.asList(cat, dog, hamster);
+		when(petsRepo.findPetTypes()).thenReturn(petTypeList);
+
+		PetTypeFormatter petTypeFormatter2 = new PetTypeFormatter(petsRepo);
+		PetType returnedType = null;
+		try {
+			returnedType = petTypeFormatter2.parse("dog", Locale.ENGLISH);
+		}catch(Exception e){}
+
+		assertEquals(dog, returnedType);
+	}
+
+	@Test
+	public void testParseStateNull(){
+		PetRepository petsRepo = mock(PetRepository.class);
+
+		PetType cat = mock(PetType.class);
+		when(cat.getName()).thenReturn("cat");
+		PetType dog = mock(PetType.class);
+		when(dog.getName()).thenReturn("dog");
+		PetType hamster = mock(PetType.class);
+		when(hamster.getName()).thenReturn("hamster");
+
+		List<PetType> petTypeList = Arrays.asList(cat, dog, hamster);
+		when(petsRepo.findPetTypes()).thenReturn(petTypeList);
+
+		PetTypeFormatter petTypeFormatter2 = new PetTypeFormatter(petsRepo);
+		PetType returnedType = null;
+		try {
+			returnedType = petTypeFormatter2.parse("bird", Locale.ENGLISH);
+		}catch(Exception e){}
+
+		assertEquals(dog, returnedType);
+	}
+
+	@Test
+	public void testParseBehaviourNotNull(){
+		PetRepository petsRepo = mock(PetRepository.class);
+
+		PetType cat = mock(PetType.class);
+		when(cat.getName()).thenReturn("cat");
+		PetType dog = mock(PetType.class);
+		when(dog.getName()).thenReturn("dog");
+		PetType hamster = mock(PetType.class);
+
+		List<PetType> petTypeList = Arrays.asList(cat, dog, hamster);
+		when(petsRepo.findPetTypes()).thenReturn(petTypeList);
+
+		PetTypeFormatter petTypeFormatter2 = new PetTypeFormatter(petsRepo);
+		PetType returnedType = null;
+		try {
+			returnedType = petTypeFormatter2.parse("dog", Locale.ENGLISH);
+		}catch(Exception e){}
+
+		verify(petsRepo, times(1)).findPetTypes();
+		verify(cat, times(1)).getName();
+		verify(dog, times(1)).getName();
+		verify(hamster, times(0)).getName();
+	}
+
+	@Test
+	public void testParseBehaviourNull(){
+		PetRepository petsRepo = mock(PetRepository.class);
+
+		PetType cat = mock(PetType.class);
+		when(cat.getName()).thenReturn("cat");
+		PetType dog = mock(PetType.class);
+		when(dog.getName()).thenReturn("dog");
+		PetType hamster = mock(PetType.class);
+		when(hamster.getName()).thenReturn("hamster");
+
+		List<PetType> petTypeList = Arrays.asList(cat, dog, hamster);
+		when(petsRepo.findPetTypes()).thenReturn(petTypeList);
+
+		PetTypeFormatter petTypeFormatter2 = new PetTypeFormatter(petsRepo);
+		PetType returnedType = null;
+		try {
+			returnedType = petTypeFormatter2.parse("bird", Locale.ENGLISH);
+		}catch(Exception e){}
+
+		verify(petsRepo, times(1)).findPetTypes();
+		verify(cat, times(1)).getName();
+		verify(dog, times(1)).getName();
+		verify(hamster, times(0)).getName();
 	}
 
 	/**
