@@ -67,7 +67,7 @@ class PetManagerTest {
 		assertEquals(Pet.class, petA.getClass(), "Return type is not Pet");
 	}
 
-	@Test
+	@Test //Mock, spy | Behaviour | Mockisty
 	public void testFindPet(){
 		PetTimedCache testPetCache = mock(PetTimedCache.class);
 		Pet petA = new Pet();
@@ -120,7 +120,7 @@ class PetManagerTest {
 		assertEquals(petList, returnedPetList);
 	}
 
-	@Test
+	@Test // Mock | State | Mockisty
 	public void testGetOwnerPetTypes(){
 		PetTimedCache testPetCache = mock(PetTimedCache.class);
 
@@ -152,7 +152,7 @@ class PetManagerTest {
 		assertEquals(expectedPetTypeList, returnedPetsType);
 	}
 
-	@Test
+	@Test // Mock | State | Mockisty
 	public void testGetVisitsBetween(){
 		PetTimedCache testPetCache = mock(PetTimedCache.class);
 
