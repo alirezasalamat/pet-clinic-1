@@ -112,11 +112,8 @@ class PetTypeFormatterTests {
 
 		PetTypeFormatter petTypeFormatter2 = new PetTypeFormatter(petsRepo);
 		PetType returnedType = null;
-		try {
-			returnedType = petTypeFormatter2.parse("bird", Locale.ENGLISH);
-		}catch(Exception e){}
 
-		assertEquals(dog, returnedType);
+		assertThrows(ParseException.class, () -> {petTypeFormatter2.parse("bird", Locale.ENGLISH);});
 	}
 
 	@Test
@@ -167,7 +164,7 @@ class PetTypeFormatterTests {
 		verify(petsRepo, times(1)).findPetTypes();
 		verify(cat, times(1)).getName();
 		verify(dog, times(1)).getName();
-		verify(hamster, times(0)).getName();
+		verify(hamster, times(1)).getName();
 	}
 
 	/**
