@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +10,7 @@ import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.UserType;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import java.util.*;
 import static org.mockito.Mockito.*;
@@ -21,7 +22,7 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.*;
 
 @ExtendWith(MockitoExtension.class)
-class SimplePriceCalculatorTest {
+public class SimplePriceCalculatorTests{
 
 	private SimplePriceCalculator simplePriceCalculator;
 	private List<Pet> pets;
@@ -29,7 +30,7 @@ class SimplePriceCalculatorTest {
 	private PetType petType;
 
 	@BeforeEach
-	void setup() {
+	public void setup() {
 		pets = new ArrayList<>();
 		pet = new Pet();
 		petType = mock(PetType.class);
@@ -38,7 +39,7 @@ class SimplePriceCalculatorTest {
 	}
 
 	@Test
-	void calcPriceFirstCondition() {
+	public void calcPriceFirstCondition() {
 		//Given
 		when(this.petType.getRare()).thenReturn(true);
 		pets.add(pet);
@@ -51,7 +52,7 @@ class SimplePriceCalculatorTest {
 	}
 
 	@Test
-	void calcPriceElseCondition() {
+	public void calcPriceElseCondition() {
 		//Given
 		when(this.petType.getRare()).thenReturn(false);
 		pets.add(pet);
@@ -64,7 +65,7 @@ class SimplePriceCalculatorTest {
 	}
 
 	@Test
-	void calcPriceNoForSecondCondition() {
+	public void calcPriceNoForSecondCondition() {
 
 		//When
 		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.NEW);
@@ -74,7 +75,7 @@ class SimplePriceCalculatorTest {
 	}
 
 	@Test
-	void calcPriceNoForNoCondition() {
+	public void calcPriceNoForNoCondition() {
 
 		//When
 		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.GOLD);
@@ -84,27 +85,33 @@ class SimplePriceCalculatorTest {
 	}
 
 	@Test
-	void calcPriceFirstConditionSecondCondition() {
+	public void calcPriceFirstConditionSecondCondition() {
+		//Given
+		when(this.petType.getRare()).thenReturn(true);
+		pets.add(pet);
 
 		//When
-		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.GOLD);
+		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.NEW);
 
 		//Then
 		assertEquals("calcPriceFirstConditionSecondCondition Failed!", res, 32.3, 0.0);
 	}
 
 	@Test
-	void calcPriceElseConditionSecondCondition() {
+	public void calcPriceElseConditionSecondCondition() {
+		//Given
+		when(this.petType.getRare()).thenReturn(false);
+		pets.add(pet);
 
 		//When
-		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.GOLD);
+		double res = simplePriceCalculator.calcPrice(pets, 10, 20, UserType.NEW);
 
 		//Then
 		assertEquals("calcPriceElseConditionSecondCondition Failed!", res, 28.5, 0.0);
 	}
 
 	@AfterEach
-	void tearDown() {
+	public void tearDown() {
 		pet = null;
 		pets = null;
 	}
