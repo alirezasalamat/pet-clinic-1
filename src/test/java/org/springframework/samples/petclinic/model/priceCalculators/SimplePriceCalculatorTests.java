@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.model;
+package org.springframework.samples.petclinic.model.priceCalculators;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
