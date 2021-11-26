@@ -24,10 +24,254 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td colspan="2"> No Report Generated </td>
-            </tr>
             
+            <tr>
+                <td>
+                    <span>UniqueTruePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: a</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = true</li>
+                        <li>b = false</li>
+                        <li>c = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>UniqueTruePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: b</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = true</li>
+                        <li>c = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>UniqueTruePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: c</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                        <li>c = true</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CACC</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>Predicate Value: false</li>
+                        <li>Major Clause: b</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ClauseCoverage</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = true</li>
+                        <li>b = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CACC</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>Predicate Value: true</li>
+                        <li>Major Clause: a</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = true</li>
+                        <li>b = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>ClauseCoverage</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = true</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CACC</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>Predicate Value: true</li>
+                        <li>Major Clause: b</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = true</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>CACC</span>
+                </td>
+                <td>
+                    <span>a + b</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>Predicate Value: false</li>
+                        <li>Major Clause: a</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>NearFalsePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: a</li>
+                        <li>Clause: a</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                        <li>c = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>NearFalsePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: b</li>
+                        <li>Clause: b</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                        <li>c = false</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>NearFalsePoint</span>
+                </td>
+                <td>
+                    <span>a + b + c</span>
+                </td>
+                <td>
+                    <ul>
+                        <li>DNF: a + b + c</li>
+                        <li>Implicant: c</li>
+                        <li>Clause: c</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>a = false</li>
+                        <li>b = false</li>
+                        <li>c = false</li>
+                    </ul>
+                </td>
+            </tr>
             </tbody>
         </table>
     </body>
