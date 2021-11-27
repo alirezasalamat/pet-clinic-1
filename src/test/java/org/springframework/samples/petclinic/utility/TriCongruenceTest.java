@@ -235,8 +235,121 @@ class TriCongruenceTest {
 
 	//-------------------------
 
+	@UniqueTruePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "a",
+		valuations = {
+			@Valuation(clause = 'a', valuation = true),
+			@Valuation(clause = 'b', valuation = true),
+			@Valuation(clause = 'c', valuation = false),
+			@Valuation(clause = 'c', valuation = false)
+		}
+	)
+
+	@NearFalsePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "ab",
+		clause = 'a',
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = true),
+			@Valuation(clause = 'c', valuation = false),
+			@Valuation(clause = 'd', valuation = false)
+		}
+	)
+
+	@UniqueTruePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "b",
+		valuations = {
+			@Valuation(clause = 'a', valuation = true),
+			@Valuation(clause = 'b', valuation = true),
+			@Valuation(clause = 'c', valuation = false),
+			@Valuation(clause = 'c', valuation = false)
+		}
+	)
+
+	@NearFalsePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "ab",
+		clause = 'b',
+		valuations = {
+			@Valuation(clause = 'a', valuation = true),
+			@Valuation(clause = 'b', valuation = false),
+			@Valuation(clause = 'c', valuation = false),
+			@Valuation(clause = 'd', valuation = false)
+		}
+	)
+
+	@UniqueTruePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "c",
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false),
+			@Valuation(clause = 'c', valuation = true),
+			@Valuation(clause = 'c', valuation = true)
+		}
+	)
+
+	@NearFalsePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "cd",
+		clause = 'c',
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false),
+			@Valuation(clause = 'c', valuation = false),
+			@Valuation(clause = 'd', valuation = true)
+		}
+	)
+
+	@UniqueTruePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "d",
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false),
+			@Valuation(clause = 'c', valuation = true),
+			@Valuation(clause = 'c', valuation = true)
+		}
+	)
+
+	@NearFalsePoint(
+		predicate = "ab + cd",
+		dnf = "ab + cd",
+		implicant = "cd",
+		clause = 'd',
+		valuations = {
+			@Valuation(clause = 'a', valuation = false),
+			@Valuation(clause = 'b', valuation = false),
+			@Valuation(clause = 'c', valuation = true),
+			@Valuation(clause = 'd', valuation = false)
+		}
+	)
+
+
 	private static boolean questionTwo(boolean a, boolean b, boolean c, boolean d, boolean e) {
 		boolean predicate = false;
+		//Consider f = ab+cd. A possible CUPTPNP set is {T T F T, T F F T, F T F T } for implicant ab
+		// (Unique true point with all near false points) combined with {F T T T, F T T F, F T F T }
+		//for implicant cd. Note that there is a near false point in common; Hence the
+		//resulting CUTPNFP set has five elements: {T T F T, T F F T, F T F T, F T T T, F T T F}.
+		//To consider UTPC we need to compute a minimal form for ¯f.
+		//¯f = ¯ac¯+ ¯a
+		//¯d + ¯bc¯+ ¯b
+		//¯d
+
+		//Note that we have 4 prime implicants in ¯f, along with 2 prime implicants in f; hence
+		//we need exactly 6 tests for UTPC. The CUTPNFP set has only 5; hence CUTPNFP
+		//does not subsume UTPC.
 //		predicate = a predicate with any number of clauses
 		return predicate;
 	}
