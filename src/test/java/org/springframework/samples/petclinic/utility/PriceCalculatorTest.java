@@ -1,7 +1,9 @@
 package org.springframework.samples.petclinic.utility;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.samples.petclinic.owner.Pet;
 import org.springframework.samples.petclinic.visit.Visit;
 
@@ -21,7 +23,7 @@ public class PriceCalculatorTest {
 	private double BASE_CHARGE = 10;
 	private double BASE_PRICE_PER_PET = 2;
 
-	@BeforeEach
+	@Before
 	public void setUp(){
 		p1 = new Pet();
 		p2 = new Pet();
@@ -81,13 +83,43 @@ public class PriceCalculatorTest {
 	}
 
 	@Test
+	public void less_than_discount_min_score_test(){
+		v1.setDate(LocalDate.now().minusDays(120));
+		v2.setDate(LocalDate.now().minusDays(120));
+		v3.setDate(LocalDate.now().minusDays(120));
+		v4.setDate(LocalDate.now().minusDays(120));
+		v5.setDate(LocalDate.now().minusDays(99));
+		v6.setDate(LocalDate.now().minusDays(100));
+		p1.addVisit(v1);
+		p1.setBirthDate(LocalDate.now().minusYears(1));
+		p2.addVisit(v2);
+		p2.setBirthDate(LocalDate.now().minusYears(1));
+		p3.addVisit(v3);
+		p3.setBirthDate(LocalDate.now().minusYears(3));
+		p4.addVisit(v4);
+		p4.setBirthDate(LocalDate.now().minusYears(3));
+		p5.addVisit(v5);
+		p5.setBirthDate(LocalDate.now().minusYears(3));
+		p6.addVisit(v6);
+		p6.setBirthDate(LocalDate.now().minusYears(3));
+		petList.add(p1);
+		petList.add(p2);
+		petList.add(p3);
+		petList.add(p4);
+		petList.add(p5);
+		petList.add(p6);
+		double returnedValue = PriceCalculator.calcPrice(petList, BASE_CHARGE, BASE_PRICE_PER_PET);
+		assertEquals(returnedValue, 16.32);
+	}
+
+	@Test
 	public void more_than_discount_min_score_test(){
 		v1.setDate(LocalDate.now().minusDays(120));
 		v2.setDate(LocalDate.now().minusDays(120));
 		v3.setDate(LocalDate.now().minusDays(120));
 		v4.setDate(LocalDate.now().minusDays(120));
-		v5.setDate(LocalDate.now().minusDays(90));
-		v5.setDate(LocalDate.now().minusDays(120));
+		v5.setDate(LocalDate.now().minusDays(99));
+		v6.setDate(LocalDate.now().minusDays(100));
 		p1.addVisit(v1);
 		p1.setBirthDate(LocalDate.now().minusYears(1));
 		p2.addVisit(v2);
@@ -107,8 +139,6 @@ public class PriceCalculatorTest {
 		petList.add(p5);
 		petList.add(p6);
 		double returnedValue = PriceCalculator.calcPrice(petList, BASE_CHARGE, BASE_PRICE_PER_PET);
-		assertEquals(returnedValue, 112.88);
+		assertEquals(returnedValue, 102.88);
 	}
-
-
 }
