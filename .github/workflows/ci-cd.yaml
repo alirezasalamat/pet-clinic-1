@@ -24,7 +24,7 @@ jobs:
 
           java-version: '11'
 
-          distribution: 'true'
+          distribution: 'adopt'
 
           cache: maven
 
